@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/home.css">
+    <title>Home Page</title>
+</head>
+<body>
+    <div class="flex-col">
+        <h1 class="header">Rock Paper Scissors </h1>
+        <div class="subheader">
+            <h2>Choose one among the following</h2>
+            <div>
+               <% for(item of data){ %>
+                   <a href="/click/<%=item.id%>"><img src=<%=item.img%> alt=<%=item.name%>></a>
+                <%} %>
+            </div>
+        </div>
+        <div class="show">
+            <% let img1="/images/question-mark.png"%>
+            <% let alt1=""%>
+            <% let img2="/images/question-mark.png"%>
+            <% let alt2=""%>
+            <% let text=""%>
+            <% let text2=""%>
+            <%if(Object.keys(params).length != 0 ){%>
+                <% img1 = data[params.computerId].img;%>
+                <% img2 = data[params.id].img;%>
+                <% alt1 = data[params.computerId].name;%>
+                <% alt2 = data[params.id].name;%>
+                <% if(params.id==params.computerId){%>
+                 <%text="Tie"%>
+                 <% } %>
+                 <% if(params.id==0&&params.computerId==1){%>
+                 <%text="You Lose"%>
+                 <% } %>
+                 <% if(params.id==1&&params.computerId==0){%>
+                 <%text="You Win"%>
+                 <% } %>
+                 <% if(params.id==0&&params.computerId==2){%>
+                 <%text="You Win"%>
+                 <% } %>
+                 <% if(params.id==2&&params.computerId==0){%>
+                 <%text="You Lose"%>
+                 <% } %>
+                 <% if(params.id==1&&params.computerId==2){%>
+                 <%text="You Lose"%>
+                 <% } %>
+                 <% if(params.id==2&&params.computerId==1){%>
+                 <%text="You Win"%>
+                 <% } %>
+                 <%text2="New Game"%>
+                <%}%>
+            <div class="w-50">
+                <h2>Computer's Choice</h2>
+                <img src=<%=img1%> alt=<%=alt1%>>
+            </div>
+            <div class="result">
+                <h2><%=text%></h2>
+            <a href="/"><%=text2%></a>
+            </div>
+            <div class="w-50">
+                <h2>Your's Choice</h2>
+                <img src=<%=img2%> alt=<%=alt2%>>
+            </div>
+        </div>
+        
+        
+    </div>
+   
+</body>
+</html>
